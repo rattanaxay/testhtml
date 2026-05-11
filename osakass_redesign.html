@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>大阪測量設計技術協会 — OSAKASS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1a18;
+    --ink-soft: #3a3a35;
+    --ink-muted: #6b6b63;
+    --ink-faint: #a5a59d;
+    --paper: #f5f3ed;
+    --paper-warm: #ece9e1;
+    --paper-card: #faf9f6;
+    --accent: #1d4e6e;
+    --accent-light: #d6e8f2;
+    --accent-vivid: #1a6fa8;
+    --gold: #b8892a;
+    --gold-light: #f0e4c8;
+    --rule: rgba(26,26,24,0.12);
+    --rule-strong: rgba(26,26,24,0.22);
+    --font-sans: 'Noto Sans JP', sans-serif;
+    --font-serif: 'Noto Serif JP', serif;
+    --font-mono: 'DM Mono', monospace;
+    --radius: 2px;
+    --radius-md: 6px;
+    --shadow-card: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.75;
+    font-weight: 400;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(245,243,237,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px; height: 64px;
+  }
+  .nav-logo {
+    display: flex; align-items: baseline; gap: 12px;
+  }
+  .nav-logo .mark {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 4px 10px;
+    border-radius: var(--radius);
+  }
+  .nav-logo .name {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--ink-soft);
+    letter-spacing: 0.04em;
+  }
+  .nav-links {
+    display: flex; gap: 32px; list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    color: var(--ink-muted);
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    padding: 120px 48px 80px;
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 64px;
+    align-items: end;
+    border-bottom: 1px solid var(--rule);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .hero-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 32px; height: 1px;
+    background: var(--ink-faint);
+    display: inline-block;
+  }
+  .hero h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 300;
+    line-height: 1.3;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+  .hero-sub {
+    font-size: 16px;
+    color: var(--ink-muted);
+    max-width: 520px;
+    line-height: 1.8;
+    margin-bottom: 40px;
+  }
+  .hero-actions {
+    display: flex; gap: 16px; align-items: center;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 12px 28px;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--accent-vivid); transform: translateY(-1px); }
+  .btn-outline {
+    border: 1px solid var(--rule-strong);
+    color: var(--ink-soft);
+    padding: 12px 28px;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hero-stat-block {
+    background: var(--paper-card);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-md);
+    padding: 32px;
+    box-shadow: var(--shadow-card);
+  }
+  .hero-stat-block h3 {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .stat-row {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .stat-item {}
+  .stat-num {
+    font-family: var(--font-serif);
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: var(--ink-muted);
+    margin-top: 4px;
+    letter-spacing: 0.04em;
+  }
+
+  /* TICKER */
+  .ticker-bar {
+    background: var(--accent);
+    color: #fff;
+    overflow: hidden;
+    height: 40px;
+    display: flex; align-items: center;
+  }
+  .ticker-label {
+    background: var(--gold);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    padding: 0 20px;
+    height: 100%;
+    display: flex; align-items: center;
+    white-space: nowrap;
+    flex-shrink: 0;
+    text-transform: uppercase;
+  }
+  .ticker-track {
+    display: flex; gap: 0;
+    animation: ticker 38s linear infinite;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .ticker-item {
+    font-size: 13px;
+    padding: 0 40px;
+    display: flex; align-items: center; gap: 8px;
+    border-right: 1px solid rgba(255,255,255,0.15);
+    height: 40px;
+  }
+  .ticker-item::before {
+    content: '●';
+    font-size: 6px;
+    opacity: 0.6;
+  }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* LAYOUT */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+  section { padding: 80px 0; }
+  section + section { border-top: 1px solid var(--rule); }
+
+  /* SECTION HEADERS */
+  .section-header {
+    display: flex; align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 48px;
+  }
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-label::before {
+    content: '';
+    width: 24px; height: 1px;
+    background: var(--ink-faint);
+  }
+  .section-title {
+    font-family: var(--font-serif);
+    font-size: 28px;
+    font-weight: 300;
+    margin-top: 8px;
+    letter-spacing: 0.02em;
+  }
+  .section-header a {
+    font-size: 13px;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid var(--accent-light);
+    padding-bottom: 1px;
+    transition: border-color 0.2s;
+  }
+  .section-header a:hover { border-color: var(--accent); }
+
+  /* NEWS */
+  .news-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+  }
+  .news-featured {
+    background: var(--paper-card);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-md);
+    padding: 32px;
+    box-shadow: var(--shadow-card);
+    display: flex; flex-direction: column;
+    gap: 16px;
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+  }
+  .news-featured:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.09); }
+  .news-tag {
+    display: inline-flex; align-items: center;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: var(--radius);
+    background: var(--accent-light);
+    color: var(--accent);
+    width: fit-content;
+  }
+  .news-tag.gold { background: var(--gold-light); color: var(--gold); }
+  .news-tag.muted { background: var(--paper-warm); color: var(--ink-muted); }
+  .news-date {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--ink-faint);
+    letter-spacing: 0.06em;
+  }
+  .news-featured h2 {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 1.5;
+  }
+  .news-featured p {
+    color: var(--ink-muted);
+    font-size: 14px;
+    line-height: 1.7;
+    flex: 1;
+  }
+  .news-read {
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.06em;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .news-read::after { content: '→'; }
+  .news-sidebar {
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .news-item {
+    background: var(--paper-card);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-md);
+    padding: 20px 24px;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .news-item:hover { border-color: var(--accent); box-shadow: var(--shadow-card); }
+  .news-item-head {
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .news-item h3 {
+    font-family: var(--font-serif);
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .news-item p {
+    font-size: 12px;
+    color: var(--ink-muted);
+    line-height: 1.6;
+  }
+
+  /* EVENTS */
+  .events-list {
+    display: flex; flex-direction: column; gap: 1px;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+  .event-row {
+    display: grid;
+    grid-template-columns: 100px 1fr auto;
+    align-items: center;
+    gap: 32px;
+    padding: 24px 32px;
+    background: var(--paper-card);
+    border-bottom: 1px solid var(--rule);
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .event-row:last-child { border-bottom: none; }
+  .event-row:hover { background: #fff; }
+  .event-date-block {
+    text-align: center;
+  }
+  .event-month {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .event-day {
+    font-family: var(--font-serif);
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .event-year {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--ink-faint);
+  }
+  .event-info h3 {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .event-info p {
+    font-size: 13px;
+    color: var(--ink-muted);
+    display: flex; align-items: center; gap: 16px;
+  }
+  .event-info p span {
+    display: flex; align-items: center; gap: 4px;
+  }
+  .event-badge {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    padding: 5px 12px;
+    border-radius: 100px;
+    border: 1px solid var(--rule-strong);
+    color: var(--ink-muted);
+    white-space: nowrap;
+  }
+  .event-badge.open { border-color: var(--accent); color: var(--accent); }
+
+  /* SERVICES */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+  .service-card {
+    background: var(--paper-card);
+    padding: 36px 32px;
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    transition: background 0.15s;
+    cursor: pointer;
+  }
+  .service-card:hover { background: #fff; }
+  .service-card:nth-child(3n) { border-right: none; }
+  .service-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--ink-faint);
+    letter-spacing: 0.12em;
+    margin-bottom: 24px;
+  }
+  .service-icon {
+    width: 44px; height: 44px;
+    border: 1px solid var(--rule-strong);
+    border-radius: var(--radius-md);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 20px;
+  }
+  .service-icon svg {
+    width: 22px; height: 22px;
+    stroke: var(--accent);
+    fill: none;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .service-card h3 {
+    font-family: var(--font-serif);
+    font-size: 17px;
+    font-weight: 300;
+    margin-bottom: 12px;
+    line-height: 1.5;
+  }
+  .service-card p {
+    font-size: 13px;
+    color: var(--ink-muted);
+    line-height: 1.75;
+  }
+  .service-link {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 12px;
+    color: var(--accent);
+    margin-top: 16px;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+  }
+  .service-link::after { content: ' →'; }
+
+  /* ABOUT STRIP */
+  .about-strip {
+    background: var(--ink);
+    color: #fff;
+    padding: 80px 48px;
+  }
+  .about-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .about-strip h2 {
+    font-family: var(--font-serif);
+    font-size: 36px;
+    font-weight: 300;
+    line-height: 1.4;
+    margin-bottom: 24px;
+    color: #fff;
+  }
+  .about-strip h2 em {
+    font-style: normal;
+    color: var(--gold);
+  }
+  .about-strip p {
+    color: rgba(255,255,255,0.6);
+    font-size: 15px;
+    line-height: 1.85;
+    margin-bottom: 32px;
+  }
+  .about-strip .btn-outline-light {
+    border: 1px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.8);
+    padding: 12px 28px;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    border-radius: var(--radius);
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .about-strip .btn-outline-light:hover { border-color: rgba(255,255,255,0.6); color: #fff; }
+  .about-grid-side {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .about-stat-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius-md);
+    padding: 24px;
+  }
+  .about-stat-num {
+    font-family: var(--font-serif);
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .about-stat-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+  }
+
+  /* CIVIL3 */
+  .civil3-band {
+    background: var(--accent-light);
+    border-top: 1px solid rgba(29,78,110,0.15);
+    border-bottom: 1px solid rgba(29,78,110,0.15);
+    padding: 48px;
+  }
+  .civil3-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 40px;
+  }
+  .civil3-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .civil3-inner h2 {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--ink);
+    max-width: 520px;
+    line-height: 1.5;
+  }
+  .civil3-inner h2 strong {
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .civil3-logos {
+    display: flex; gap: 12px; flex-wrap: wrap; flex-shrink: 0;
+  }
+  .civil3-logo-pill {
+    border: 1px solid rgba(29,78,110,0.3);
+    color: var(--accent);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    padding: 8px 18px;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #111;
+    color: rgba(255,255,255,0.5);
+    padding: 60px 48px 32px;
+  }
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 32px;
+  }
+  .footer-brand .mark {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 12px;
+  }
+  .footer-brand p {
+    font-size: 13px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.35);
+  }
+  .footer-col h4 {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 16px;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 10px; }
+  .footer-col ul li a {
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-col ul li a:hover { color: rgba(255,255,255,0.8); }
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-bottom p {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 0.06em;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero > * {
+    animation: fadeUp 0.7s ease both;
+  }
+  .hero > *:nth-child(2) { animation-delay: 0.12s; }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--paper); }
+  ::-webkit-scrollbar-thumb { background: var(--rule-strong); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <span class="mark">OSAKASS</span>
+    <span class="name">大阪測量設計技術協会</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#news">お知らせ</a></li>
+    <li><a href="#events">イベント</a></li>
+    <li><a href="#services">事業内容</a></li>
+    <li><a href="#about">協会概要</a></li>
+    <li><a href="#contact">お問い合わせ</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div style="max-width:100%; overflow:hidden;">
+  <div class="hero" style="max-width:1200px; margin: 0 auto; padding: 120px 48px 80px;">
+    <div>
+      <div class="hero-eyebrow">一般社団法人</div>
+      <h1>測量・設計の<br>専門家たちが<br><em>未来を測る。</em></h1>
+      <p class="hero-sub">大阪測量設計技術協会は、近畿地区の測量・設計・GIS分野の技術者が集い、地域社会の基盤を支えるプロフェッショナルの団体です。</p>
+      <div class="hero-actions">
+        <a href="#events" class="btn-primary">イベント・研修を見る</a>
+        <a href="#about" class="btn-outline">協会について</a>
+      </div>
+    </div>
+    <div class="hero-stat-block">
+      <h3>協会の実績</h3>
+      <div class="stat-row">
+        <div class="stat-item">
+          <div class="stat-num">28+</div>
+          <div class="stat-label">設立年数</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">GIS</div>
+          <div class="stat-label">技術分野</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">CPD</div>
+          <div class="stat-label">継続学習</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">4社</div>
+          <div class="stat-label">CIVIL3連携</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker-bar">
+  <div class="ticker-label">最新情報</div>
+  <div class="ticker-track">
+    <span class="ticker-item">関西地空間フォーラム2025 — 令和7年10月18日 大阪工業大学OITキャンパス</span>
+    <span class="ticker-item">「測量の日」記念フェア2025 — 令和7年6月3日 大阪市内会場</span>
+    <span class="ticker-item">CIVIL3「南海トラフ地震対応への職業活用」に関する協定書 更新済み</span>
+    <span class="ticker-item">CPD単位対応セミナー随時受付中 — 詳細はイベントページへ</span>
+    <span class="ticker-item">関西地空間フォーラム2025 — 令和7年10月18日 大阪工業大学OITキャンパス</span>
+    <span class="ticker-item">「測量の日」記念フェア2025 — 令和7年6月3日 大阪市内会場</span>
+    <span class="ticker-item">CIVIL3「南海トラフ地震対応への職業活用」に関する協定書 更新済み</span>
+    <span class="ticker-item">CPD単位対応セミナー随時受付中 — 詳細はイベントページへ</span>
+  </div>
+</div>
+
+<!-- NEWS -->
+<section id="news">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <div class="section-label">ニュース</div>
+        <h2 class="section-title">最新のお知らせ</h2>
+      </div>
+      <a href="#">すべて見る</a>
+    </div>
+    <div class="news-grid">
+      <div class="news-featured">
+        <div style="display:flex;gap:10px;align-items:center;">
+          <span class="news-tag gold">注目</span>
+          <span class="news-date">2025.10.18</span>
+        </div>
+        <h2>関西地空間フォーラム2025の開催</h2>
+        <p>令和7年10月18日（土）、大阪工業大学OIT梅田タワー3階ホールにて開催予定です。定員500名。測量・設計CPD単位（専門・設計各1ポイント）対応。ドローン上級技術者単位も取得可能です。</p>
+        <div style="display:flex;gap:16px;align-items:center;">
+          <span class="news-tag">CPD対応</span>
+          <span class="news-tag muted">定員500名</span>
+        </div>
+        <span class="news-read">詳細・申込はこちら</span>
+      </div>
+      <div class="news-sidebar">
+        <div class="news-item">
+          <div class="news-item-head">
+            <span class="news-tag">フェア</span>
+            <span class="news-date">2025.06.03</span>
+          </div>
+          <h3>「測量の日」記念フェア2025 — 技術発表会・機器展示</h3>
+          <p>大阪市内会場にて開催。CPD（測量系3ポイント・設計系3ポイント）。</p>
+        </div>
+        <div class="news-item">
+          <div class="news-item-head">
+            <span class="news-tag muted">協定</span>
+            <span class="news-date">2025.04</span>
+          </div>
+          <h3>CIVIL3協定書 令和4年3月更新 — 第8次改定版公開</h3>
+          <p>南海トラフ地震対応における職業活用に関する最新版を掲載しました。</p>
+        </div>
+        <div class="news-item">
+          <div class="news-item-head">
+            <span class="news-tag muted">セミナー</span>
+            <span class="news-date">2024.10</span>
+          </div>
+          <h3>関西地空間フォーラム2024 — 開催報告</h3>
+          <p>225名の参加をいただき、盛況のうちに終了しました。ありがとうございました。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section id="events">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <div class="section-label">イベント・研修</div>
+        <h2 class="section-title">今後の予定</h2>
+      </div>
+      <a href="#">カレンダーを見る</a>
+    </div>
+    <div class="events-list">
+      <div class="event-row">
+        <div class="event-date-block">
+          <div class="event-month">OCT</div>
+          <div class="event-day">18</div>
+          <div class="event-year">2025</div>
+        </div>
+        <div class="event-info">
+          <h3>関西地空間フォーラム2025</h3>
+          <p>
+            <span>📍 大阪工業大学 OIT梅田タワー 3階ホール</span>
+            <span>⏱ 9:30 – 17:00</span>
+            <span>👥 定員500名</span>
+          </p>
+        </div>
+        <span class="event-badge open">受付中</span>
+      </div>
+      <div class="event-row">
+        <div class="event-date-block">
+          <div class="event-month">JUN</div>
+          <div class="event-day">03</div>
+          <div class="event-year">2025</div>
+        </div>
+        <div class="event-info">
+          <h3>「測量の日」記念フェア2025 — 技術発表・機器システム展</h3>
+          <p>
+            <span>📍 大阪市内会場</span>
+            <span>⏱ 13:00 – 16:30</span>
+          </p>
+        </div>
+        <span class="event-badge open">申込受付中</span>
+      </div>
+      <div class="event-row">
+        <div class="event-date-block">
+          <div class="event-month">NOV</div>
+          <div class="event-day">TBD</div>
+          <div class="event-year">2025</div>
+        </div>
+        <div class="event-info">
+          <h3>第22回 測量設計とのトップセミナー</h3>
+          <p>
+            <span>📍 ナレッジキャピタルホテル 6階</span>
+            <span>⏱ 13:00 –</span>
+            <span>👥 定員100名</span>
+          </p>
+        </div>
+        <span class="event-badge">詳細準備中</span>
+      </div>
+      <div class="event-row">
+        <div class="event-date-block">
+          <div class="event-month">MAY</div>
+          <div class="event-day">TBD</div>
+          <div class="event-year">2026</div>
+        </div>
+        <div class="event-info">
+          <h3>i-Construction技術セミナー 2026</h3>
+          <p>
+            <span>📍 大阪市内コンサルタント会社</span>
+            <span>CPD単位: 測量系4ポイント</span>
+          </p>
+        </div>
+        <span class="event-badge">詳細準備中</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <div class="section-label">事業内容</div>
+        <h2 class="section-title">協会の活動分野</h2>
+      </div>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3>地空間情報・GIS技術</h3>
+        <p>地理空間情報技術の普及推進。地空間フォーラムを通じた最新技術の発信と、GIS活用事例の共有。</p>
+        <a href="#" class="service-link">詳しく見る</a>
+      </div>
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+        </div>
+        <h3>UAV・ドローン技術</h3>
+        <p>上級ドローン技術者の育成と資格取得支援。3次元測量への応用、ICT建設機械との連携技術の研究。</p>
+        <a href="#" class="service-link">詳しく見る</a>
+      </div>
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <h3>CPD・継続学習支援</h3>
+        <p>測量・設計両系CPD単位認定のセミナー・フォーラム開催。技術者の生涯学習と専門性向上を支援。</p>
+        <a href="#" class="service-link">詳しく見る</a>
+      </div>
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>業界交流・ネットワーク</h3>
+        <p>新年賀詞交換会やトップセミナーなど、業界関係者が集う交流機会を定期的に提供。</p>
+        <a href="#" class="service-link">詳しく見る</a>
+      </div>
+      <div class="service-card">
+        <div class="service-num">05</div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3>i-Construction推進</h3>
+        <p>ICT施工・3次元設計データ活用の普及啓発。建設現場のデジタル変革を推進するセミナーを開催。</p>
+        <a href="#" class="service-link">詳しく見る</a>
+      </div>
+      <div class="service-card">
+        <div class="service-num">06</div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3>災害対応・防災支援</h3>
+        <p>CIVIL3連携による南海トラフ地震対応の職業活用協定。測量技術を活かした社会への貢献活動。</p>
+        <a href="#" class="service-link">詳しく見る</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CIVIL3 BAND -->
+<div class="civil3-band">
+  <div class="civil3-inner">
+    <div>
+      <div class="civil3-label">CIVIL3 協定</div>
+      <h2>南海トラフ地震等の<strong>大規模災害対応</strong>における<br>職業活用協定を締結</h2>
+    </div>
+    <div class="civil3-logos">
+      <div class="civil3-logo-pill">測量コンサルタンツ近畿</div>
+      <div class="civil3-logo-pill">関西建設業協会</div>
+      <div class="civil3-logo-pill">兵庫県測量設計技術協会</div>
+      <div class="civil3-logo-pill">大阪測量設計技術協会</div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="about-strip" id="about">
+  <div class="about-inner">
+    <div>
+      <h2>測量・設計の専門家が<br><em>地域を支える</em></h2>
+      <p>一般社団法人 大阪測量設計技術協会は、近畿地区を中心に測量・設計・GIS分野の技術者と企業が集う専門家団体です。最新のドローン技術、i-Constructionへの対応、GISの普及推進を通じて、地域社会の安全・安心な基盤づくりに貢献しています。</p>
+      <p>近年はドローンなど最先端技術の社会実装と切り離せない関係にあり、フォーラムやセミナーを通じて業界の知見を共有し続けています。</p>
+      <a href="#" class="btn-outline-light">協会のあゆみを見る</a>
+    </div>
+    <div class="about-grid-side">
+      <div class="about-stat-card">
+        <div class="about-stat-num">1989</div>
+        <div class="about-stat-label">設立年</div>
+      </div>
+      <div class="about-stat-card">
+        <div class="about-stat-num">近畿</div>
+        <div class="about-stat-label">活動エリア</div>
+      </div>
+      <div class="about-stat-card">
+        <div class="about-stat-num">GIS</div>
+        <div class="about-stat-label">重点技術分野</div>
+      </div>
+      <div class="about-stat-card">
+        <div class="about-stat-num">CPD</div>
+        <div class="about-stat-label">認定単位取得</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="mark">OSAKASS</span>
+        <p>一般社団法人<br>大阪測量設計技術協会<br>〒大阪府 大阪市内</p>
+      </div>
+      <div class="footer-col">
+        <h4>協会</h4>
+        <ul>
+          <li><a href="#">協会概要</a></li>
+          <li><a href="#">役員一覧</a></li>
+          <li><a href="#">会員企業</a></li>
+          <li><a href="#">協会のあゆみ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>活動</h4>
+        <ul>
+          <li><a href="#">フォーラム</a></li>
+          <li><a href="#">セミナー</a></li>
+          <li><a href="#">測量の日</a></li>
+          <li><a href="#">CIVIL3協定</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>お問い合わせ</h4>
+        <ul>
+          <li><a href="#">入会申込</a></li>
+          <li><a href="#">事務局へのお問い合わせ</a></li>
+          <li><a href="https://www.gsi.go.jp/kinki/">国土地理院近畿地方測量部</a></li>
+          <li><a href="#">プライバシーポリシー</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 一般社団法人 大阪測量設計技術協会 All rights reserved.</p>
+      <p>osakass.org</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
